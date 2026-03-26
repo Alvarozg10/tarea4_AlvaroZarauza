@@ -12,10 +12,16 @@
            style="-fx-font-size:20px; -fx-font-weight:bold;"/>
 
     <Button text="Registrar Persona"
-            onAction="#registrarPersona"/>
+        onAction="#registrarPersona"/>
 
     <Button text="Modificar Personas"
         onAction="#modificarPersona"/>
+        
+    <Button text="Crear Espectáculo" 
+    	onAction="#crearEspectaculo"/>
+    	
+   	<Button text="Modificar Espectáculo"
+   		onAction="#modificarEspectaculo"/>
 
     <Button text="Cerrar sesión"/>
 

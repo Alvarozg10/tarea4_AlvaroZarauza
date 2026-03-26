@@ -9,26 +9,26 @@ import org.springframework.stereotype.Component;
 import com.luisdbb.tarea3AD2024base.modelo.*;
 import com.luisdbb.tarea3AD2024base.services.PersonaService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class ModificarPersonaController {
 
-    @FXML
-    private TextField idField;
+    @FXML private TextField idField;
+    @FXML private TextField nombreField;
+    @FXML private TextField emailField;
+    @FXML private TextField nacionalidadField;
+    @FXML private TextField apodoField;
 
-    @FXML
-    private TextField nombreField;
+    @FXML private CheckBox seniorCheck;
+    @FXML private DatePicker fechaSeniorPicker;
 
-    @FXML
-    private TextField emailField;
-
-    @FXML
-    private TextField nacionalidadField;
-
-    @FXML
-    private TextField apodoField;
-
-    @FXML
-    private CheckBox seniorCheck;
+    @FXML private CheckBox acroCheck;
+    @FXML private CheckBox humorCheck;
+    @FXML private CheckBox magiaCheck;
+    @FXML private CheckBox equilibrioCheck;
+    @FXML private CheckBox malabaresCheck;
 
     @Autowired
     private PersonaService personaService;
@@ -53,13 +53,39 @@ public class ModificarPersonaController {
 
             apodoField.clear();
             seniorCheck.setSelected(false);
+            fechaSeniorPicker.setValue(null);
+
+            acroCheck.setSelected(false);
+            humorCheck.setSelected(false);
+            magiaCheck.setSelected(false);
+            equilibrioCheck.setSelected(false);
+            malabaresCheck.setSelected(false);
 
             if (personaActual instanceof Artista artista) {
+
                 apodoField.setText(artista.getApodo());
+
+                if (artista.getEspecialidades() != null) {
+                    for (Especialidad esp : artista.getEspecialidades()) {
+
+                        switch (esp) {
+                            case ACROBACIA -> acroCheck.setSelected(true);
+                            case HUMOR -> humorCheck.setSelected(true);
+                            case MAGIA -> magiaCheck.setSelected(true);
+                            case EQUILIBRISMO -> equilibrioCheck.setSelected(true);
+                            case MALABARISMO -> malabaresCheck.setSelected(true);
+                        }
+                    }
+                }
             }
 
             if (personaActual instanceof Coordinacion coord) {
+
                 seniorCheck.setSelected(coord.isSenior());
+
+                if (coord.getFechaSenior() != null) {
+                    fechaSeniorPicker.setValue(coord.getFechaSenior());
+                }
             }
 
         } catch (NumberFormatException e) {
@@ -76,13 +102,24 @@ public class ModificarPersonaController {
         }
 
         try {
+
+            List<Especialidad> especialidades = new ArrayList<>();
+
+            if (acroCheck.isSelected()) especialidades.add(Especialidad.ACROBACIA);
+            if (humorCheck.isSelected()) especialidades.add(Especialidad.HUMOR);
+            if (magiaCheck.isSelected()) especialidades.add(Especialidad.MAGIA);
+            if (equilibrioCheck.isSelected()) especialidades.add(Especialidad.EQUILIBRISMO);
+            if (malabaresCheck.isSelected()) especialidades.add(Especialidad.MALABARISMO);
+
             personaService.modificarPersona(
                     personaActual.getId(),
                     nombreField.getText(),
                     emailField.getText(),
                     nacionalidadField.getText(),
                     apodoField.getText(),
-                    seniorCheck.isSelected()
+                    seniorCheck.isSelected(),
+                    fechaSeniorPicker.getValue(),
+                    especialidades // 🔥 nuevo
             );
 
             mostrarInfo("Persona modificada correctamente");

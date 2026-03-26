@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.luisdbb.tarea3AD2024base.modelo.Credenciales;
+import com.luisdbb.tarea3AD2024base.modelo.Sesion;
 import com.luisdbb.tarea3AD2024base.services.AuthService;
 import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
@@ -35,6 +36,9 @@ public class LoginController {
     @Autowired
     private StageManager stageManager;
 
+    @Autowired
+    private Sesion sesion;
+
     @FXML
     public void login() {
 
@@ -50,6 +54,8 @@ public class LoginController {
             alert.showAndWait();
 
         } else {
+
+            sesion.setUsuario(cred.getPersona());
 
             switch (cred.getPerfil()) {
 
@@ -70,7 +76,7 @@ public class LoginController {
                     break;
             }
         }
-            }
+    }
         
     
     @FXML

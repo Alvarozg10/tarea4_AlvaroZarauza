@@ -1,29 +1,18 @@
 package com.luisdbb.tarea3AD2024base.controller;
 
+import javafx.fxml.FXML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-
 @Component
-public class AdminController {
+public class CoordinadorController {
 
     @Autowired
     private StageManager stageManager;
 
-    public void registrarPersona(ActionEvent event) {
-        stageManager.switchScene(FxmlView.REGISTRAR_PERSONA);
-    }
-    
-    @FXML
-    public void modificarPersona() {
-        stageManager.switchScene(FxmlView.MODIFICAR_PERSONA);
-    }
-    
     @FXML
     public void crearEspectaculo() {
         stageManager.switchScene(FxmlView.CREAR_ESPECTACULO);
@@ -33,4 +22,5 @@ public class AdminController {
     public void modificarEspectaculo() {
         stageManager.switchScene(FxmlView.MODIFICAR_ESPECTACULO);
     }
-}
+
+    }

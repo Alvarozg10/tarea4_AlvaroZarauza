@@ -15,7 +15,17 @@
 
     <TextField fx:id="apodoField"/>
     
+    <Label text="Especialidades (solo artista)"/>
+
+	<CheckBox fx:id="acroCheck" text="ACROBACIA"/>
+	<CheckBox fx:id="humorCheck" text="HUMOR"/>
+	<CheckBox fx:id="magiaCheck" text="MAGIA"/>
+	<CheckBox fx:id="equilibrioCheck" text="EQUILIBRISMO"/>
+	<CheckBox fx:id="malabaresCheck" text="MALABARISMO"/>
+    
     <CheckBox fx:id="seniorCheck" text="Senior"/>
+    <Label text="Fecha senior (solo coordinador)"/>
+	<DatePicker fx:id="fechaSeniorPicker"/>
     
     <Button text="Guardar cambios" onAction="#guardarCambios"/>
 

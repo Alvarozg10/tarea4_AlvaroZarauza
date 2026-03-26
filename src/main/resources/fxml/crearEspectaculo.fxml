@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.luisdbb.tarea3AD2024base.controller.CrearEspectaculoController">
+
+    <Label text="Crear Espectáculo" style="-fx-font-size: 18px;" />
+
+    <TextField fx:id="nombreField" promptText="Nombre del espectáculo"/>
+
+    <DatePicker fx:id="fechaInicioPicker" promptText="Fecha inicio"/>
+    <DatePicker fx:id="fechaFinPicker" promptText="Fecha fin"/>
+
+    <Label text="Seleccionar Coordinador"/>
+    <ComboBox fx:id="coordinadorCombo" prefWidth="200"/>
+
+    <Button text="Crear Espectáculo" onAction="#crearEspectaculo"/>
+
+</VBox>

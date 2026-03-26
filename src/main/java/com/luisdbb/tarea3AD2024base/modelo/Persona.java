@@ -70,4 +70,9 @@ public class Persona {
     public void setCredenciales(Credenciales credenciales) {
         this.credenciales = credenciales;
     }
+    
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }

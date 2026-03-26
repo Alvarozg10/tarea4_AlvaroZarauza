@@ -17,9 +17,13 @@ public class PersonaService {
 
     @Autowired
     private CredencialesRepository credencialesRepository;
-    
+
     public Persona buscarPorId(Long id) {
         return personaRepository.findById(id).orElse(null);
+    }
+    
+    public List<Persona> obtenerTodas() {
+        return personaRepository.findAll();
     }
 
     public void registrarPersona(
@@ -87,6 +91,8 @@ public class PersonaService {
                     throw new RuntimeException("Debe indicar la fecha de senior");
                 }
                 coord.setFechaSenior(fechaSenior);
+            } else {
+                coord.setFechaSenior(null);
             }
 
             persona = personaRepository.save(coord);
@@ -124,26 +130,45 @@ public class PersonaService {
 
         credencialesRepository.save(cred);
     }
-    
-    public void modificarPersona(Long id, String nombre, String email,
-            String nacionalidad, String apodo, boolean senior) {
 
-    	Persona persona = personaRepository.findById(id).orElse(null);
+    public void modificarPersona(
+            Long id,
+            String nombre,
+            String email,
+            String nacionalidad,
+            String apodo,
+            boolean senior,
+            LocalDate fechaSenior,
+            List<Especialidad> especialidades) {
 
-    	if (persona == null) return;
+        Persona persona = personaRepository.findById(id).orElse(null);
 
-    	persona.setNombre(nombre);
-    	persona.setEmail(email);
-    	persona.setNacionalidad(nacionalidad);
+        if (persona == null) {
+            throw new RuntimeException("Persona no encontrada");
+        }
 
-    	if (persona instanceof Artista artista) {
-    		artista.setApodo(apodo);
-    	}
+        persona.setNombre(nombre);
+        persona.setEmail(email);
+        persona.setNacionalidad(nacionalidad);
 
-    	if (persona instanceof Coordinacion coord) {
-    		coord.setSenior(senior);
-    	}
+        if (persona instanceof Artista artista) {
+            artista.setApodo(apodo);
 
-    	personaRepository.save(persona);
+            if (especialidades != null && !especialidades.isEmpty()) {
+                artista.setEspecialidades(especialidades);
+            }
+        }
+
+        if (persona instanceof Coordinacion coord) {
+            coord.setSenior(senior);
+
+            if (senior) {
+                coord.setFechaSenior(fechaSenior);
+            } else {
+                coord.setFechaSenior(null);
+            }
+        }
+
+        personaRepository.save(persona);
     }
 }

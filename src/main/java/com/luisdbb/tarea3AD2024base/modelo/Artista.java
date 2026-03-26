@@ -10,7 +10,7 @@ public class Artista extends Persona {
 
     private String apodo;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
         name = "artista_especialidad",
         joinColumns = @JoinColumn(name = "artista_id")

@@ -24,7 +24,6 @@ public class StageManager {
     public void switchScene(FxmlView view) {
 
         try {
-
             Parent root = (Parent) springFXMLLoader.load(view.getFxml());
 
             primaryStage.setScene(new Scene(root));
