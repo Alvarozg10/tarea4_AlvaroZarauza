@@ -22,11 +22,14 @@ public class StageManager {
     }
 
     public void switchScene(FxmlView view) {
-
         try {
             Parent root = (Parent) springFXMLLoader.load(view.getFxml());
 
-            primaryStage.setScene(new Scene(root));
+            Scene scene = new Scene(root, 600, 400);
+
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.centerOnScreen();   
             primaryStage.show();
 
         } catch (Exception e) {

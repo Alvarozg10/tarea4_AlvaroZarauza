@@ -4,50 +4,59 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="15" alignment="CENTER"
+<VBox spacing="20" alignment="CENTER"
+      prefWidth="600.0" prefHeight="400.0"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.luisdbb.tarea3AD2024base.controller.LoginController">
+      fx:controller="com.luisdbb.tarea3AD2024base.controller.LoginController"
+      style="-fx-background-color: #f4f4f4;">
 
     <padding>
         <Insets top="40" right="40" bottom="40" left="40"/>
     </padding>
 
     <Label text="Sistema de Gestión del Circo"
-           style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+           style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
 
-    <GridPane hgap="10" vgap="10">
+    <GridPane hgap="15" vgap="15" alignment="CENTER">
 
         <Label text="Usuario:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+
         <TextField fx:id="usernameField"
                    promptText="Introduce tu usuario"
+                   prefWidth="250"
                    GridPane.rowIndex="0"
                    GridPane.columnIndex="1"/>
 
         <Label text="Contraseña:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
         <StackPane GridPane.rowIndex="1" GridPane.columnIndex="1">
 
-    <PasswordField fx:id="passwordField"
-                   promptText="Introduce tu contraseña"/>
+            <PasswordField fx:id="passwordField"
+                           promptText="Introduce tu contraseña"
+                           prefWidth="250"/>
 
-    <TextField fx:id="passwordVisible"
-               promptText="Introduce tu contraseña"
-               visible="false"/>
+            <TextField fx:id="passwordVisible"
+                       promptText="Introduce tu contraseña"
+                       prefWidth="250"
+                       visible="false"/>
 
-</StackPane>
+        </StackPane>
 
     </GridPane>
 
-    <CheckBox fx:id="mostrarPassword" text="Mostrar contraseña" onAction="#mostrarPassword"/>
+    <CheckBox fx:id="mostrarPassword"
+              text="Mostrar contraseña"
+              onAction="#mostrarPassword"/>
 
-    <HBox spacing="10" alignment="CENTER">
+    <HBox spacing="15" alignment="CENTER">
 
         <Button text="Iniciar sesión"
                 onAction="#login"
-                mnemonicParsing="true"/>
+                style="-fx-background-radius: 8; -fx-padding: 8 15;"/>
 
         <Button text="Recuperar contraseña"
                 onAction="#recuperarPassword"
-                mnemonicParsing="true"/>
+                style="-fx-background-radius: 8; -fx-padding: 8 15;"/>
 
     </HBox>
 
