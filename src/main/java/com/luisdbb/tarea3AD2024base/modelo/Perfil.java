@@ -4,7 +4,6 @@ public enum Perfil {
 
     ADMIN,
     COORDINACION,
-    ARTISTA,
-    INVITADO
+    ARTISTA
 }
 

@@ -59,5 +59,7 @@
                 style="-fx-background-radius: 8; -fx-padding: 8 15;"/>
 
     </HBox>
+    
+    <Button text="Ver espectáculos como invitado" onAction="#entrarInvitado"/>
 
 </VBox>

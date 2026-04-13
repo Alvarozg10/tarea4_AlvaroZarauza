@@ -81,5 +81,17 @@ public class VerEspectaculoController {
                 tablaArtistas.setItems(FXCollections.observableArrayList(numSel.getArtistas()));
             }
         });
+        
+        tablaEspectaculos.setPlaceholder(
+                new Label("No hay espectáculos disponibles")
+            );
+
+            tablaNumeros.setPlaceholder(
+                new Label("No hay números")
+            );
+
+            tablaArtistas.setPlaceholder(
+                new Label("No hay artistas")
+            );
+        }
     }
-}

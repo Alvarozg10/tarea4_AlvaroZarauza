@@ -3,45 +3,53 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="15" alignment="CENTER"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.luisdbb.tarea3AD2024base.controller.RegistrarPersonaController">
+<ScrollPane fitToWidth="true"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.luisdbb.tarea3AD2024base.controller.RegistrarPersonaController">
 
-    <Label text="Registrar Persona"
-           style="-fx-font-size:20px; -fx-font-weight:bold;" />
+    <content>
 
-    <TextField fx:id="nombreField" promptText="Nombre real"/>
+        <VBox spacing="15" alignment="CENTER">
 
-    <TextField fx:id="emailField" promptText="Email"/>
+            <Label text="Registrar Persona"
+                   style="-fx-font-size:20px; -fx-font-weight:bold;" />
 
-    <TextField fx:id="nacionalidadField" promptText="Nacionalidad"/>
+            <TextField fx:id="nombreField" promptText="Nombre real"/>
 
-    <ComboBox fx:id="tipoPersonaCombo"
-              promptText="Tipo de persona">
-    </ComboBox>
+            <TextField fx:id="emailField" promptText="Email"/>
 
-    <TextField fx:id="apodoField" promptText="Apodo (solo artista)"/>
-    
-    <Label text="Especialidades:"/>
+            <TextField fx:id="nacionalidadField" promptText="Nacionalidad"/>
 
-	<VBox fx:id="especialidadesBox" spacing="5">
-    <CheckBox text="ACROBACIA"/>
-    <CheckBox text="HUMOR"/>
-    <CheckBox text="MAGIA"/>
-    <CheckBox text="EQUILIBRISMO"/>
-    <CheckBox text="MALABARISMO"/>
-	</VBox>
-    
-    <HBox spacing="10">
-    <CheckBox fx:id="seniorCheck" text="Senior (solo coordinador)"/>
-    <DatePicker fx:id="fechaSeniorPicker"/>
-	</HBox>
+            <ComboBox fx:id="tipoPersonaCombo"
+                      promptText="Tipo de persona">
+            </ComboBox>
 
-    <TextField fx:id="usernameField" promptText="Username"/>
+            <TextField fx:id="apodoField" promptText="Apodo (solo artista)"/>
+            
+            <Label text="Especialidades:"/>
 
-    <PasswordField fx:id="passwordField" promptText="Password"/>
+            <VBox fx:id="especialidadesBox" spacing="5">
+                <CheckBox text="ACROBACIA"/>
+                <CheckBox text="HUMOR"/>
+                <CheckBox text="MAGIA"/>
+                <CheckBox text="EQUILIBRISMO"/>
+                <CheckBox text="MALABARISMO"/>
+            </VBox>
+            
+            <HBox spacing="10">
+                <CheckBox fx:id="seniorCheck" text="Senior (solo coordinador)"/>
+                <DatePicker fx:id="fechaSeniorPicker"/>
+            </HBox>
 
-    <Button text="Registrar"
-            onAction="#registrarPersona"/>
+            <TextField fx:id="usernameField" promptText="Username"/>
 
-</VBox>
+            <PasswordField fx:id="passwordField" promptText="Password"/>
+
+            <Button text="Registrar"
+                    onAction="#registrarPersona"/>
+
+        </VBox>
+
+    </content>
+
+</ScrollPane>

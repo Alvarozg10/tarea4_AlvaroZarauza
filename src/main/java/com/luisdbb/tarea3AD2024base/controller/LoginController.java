@@ -45,6 +45,20 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        if (sesion.getUsuario() != null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ya hay una sesión iniciada");
+            alert.showAndWait();
+            return;
+        }
+
+        if (username.isBlank() || password.isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Debes rellenar usuario y contraseña");
+            alert.showAndWait();
+            return;
+        }
+
         Credenciales cred = authService.login(username, password);
 
         if (cred == null) {
@@ -69,10 +83,6 @@ public class LoginController {
 
                 case ARTISTA:
                     stageManager.switchScene(FxmlView.ARTISTA);
-                    break;
-
-                case INVITADO:
-                    stageManager.switchScene(FxmlView.INVITADO);
                     break;
             }
         }
@@ -113,5 +123,13 @@ public class LoginController {
             alert.setContentText("Tu contraseña es: " + cred.getPassword());
             alert.show();
         }
+    }
+    
+    @FXML
+    public void entrarInvitado() {
+
+        sesion.setUsuario(null);
+
+        stageManager.switchScene(FxmlView.VER_ESPECTACULO);
     }
 }

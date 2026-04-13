@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.luisdbb.tarea3AD2024base.config.StageManager;
+import com.luisdbb.tarea3AD2024base.modelo.Sesion;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
 import javafx.event.ActionEvent;
@@ -14,6 +15,9 @@ public class AdminController {
 
     @Autowired
     private StageManager stageManager;
+    
+    @Autowired
+    private Sesion sesion;
 
     public void registrarPersona(ActionEvent event) {
         stageManager.switchScene(FxmlView.REGISTRAR_PERSONA);
@@ -46,6 +50,9 @@ public class AdminController {
     
     @FXML
     public void cerrarSesion() {
-        stageManager.switchScene(FxmlView.LOGIN);
+
+        sesion.setUsuario(null); 
+
+        stageManager.switchScene(FxmlView.LOGIN); 
     }
 }

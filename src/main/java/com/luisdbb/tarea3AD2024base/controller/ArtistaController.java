@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.luisdbb.tarea3AD2024base.config.StageManager;
+import com.luisdbb.tarea3AD2024base.modelo.Sesion;
 import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
 @Component
@@ -13,6 +14,9 @@ public class ArtistaController {
 
     @Autowired
     private StageManager stageManager;
+    
+    @Autowired
+    private Sesion sesion;
 
     @FXML
     public void verFicha() {
@@ -26,6 +30,9 @@ public class ArtistaController {
     
     @FXML
     public void cerrarSesion() {
-        stageManager.switchScene(FxmlView.LOGIN);
+
+        sesion.setUsuario(null); 
+
+        stageManager.switchScene(FxmlView.LOGIN); 
     }
 }
