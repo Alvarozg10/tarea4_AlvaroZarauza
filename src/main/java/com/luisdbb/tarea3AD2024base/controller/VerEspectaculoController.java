@@ -8,24 +8,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.modelo.*;
 import com.luisdbb.tarea3AD2024base.services.EspectaculoService;
+import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Component
 public class VerEspectaculoController {
-	
+
     @FXML private TableView<Espectaculo> tablaEspectaculos;
     @FXML private TableColumn<Espectaculo, Long> colEspId;
     @FXML private TableColumn<Espectaculo, String> colEspNombre;
     @FXML private TableColumn<Espectaculo, LocalDate> colEspInicio;
     @FXML private TableColumn<Espectaculo, LocalDate> colEspFin;
-
-    @FXML private Label nombreLabel;
-    @FXML private Label fechasLabel;
-    @FXML private Label coordLabel;
 
     @FXML private TableView<Numero> tablaNumeros;
     @FXML private TableColumn<Numero, Long> colNumId;
@@ -39,6 +37,12 @@ public class VerEspectaculoController {
 
     @Autowired
     private EspectaculoService espectaculoService;
+
+    @Autowired
+    private StageManager stageManager;
+
+    @Autowired
+    private Sesion sesion;
 
     @FXML
     public void initialize() {
@@ -59,7 +63,7 @@ public class VerEspectaculoController {
         tablaEspectaculos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tablaNumeros.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tablaArtistas.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        
+
         List<Espectaculo> lista = espectaculoService.obtenerTodos();
         tablaEspectaculos.setItems(FXCollections.observableArrayList(lista));
 
@@ -70,7 +74,6 @@ public class VerEspectaculoController {
                 Espectaculo esp = espectaculoService.obtenerEspectaculoCompleto(espSel.getId());
 
                 tablaNumeros.setItems(FXCollections.observableArrayList(esp.getNumeros()));
-
                 tablaArtistas.getItems().clear();
             }
         });
@@ -81,17 +84,23 @@ public class VerEspectaculoController {
                 tablaArtistas.setItems(FXCollections.observableArrayList(numSel.getArtistas()));
             }
         });
-        
-        tablaEspectaculos.setPlaceholder(
-                new Label("No hay espectáculos disponibles")
-            );
 
-            tablaNumeros.setPlaceholder(
-                new Label("No hay números")
-            );
+        tablaEspectaculos.setPlaceholder(new Label("No hay espectáculos disponibles"));
+        tablaNumeros.setPlaceholder(new Label("No hay números"));
+        tablaArtistas.setPlaceholder(new Label("No hay artistas"));
+    }
 
-            tablaArtistas.setPlaceholder(
-                new Label("No hay artistas")
-            );
+    @FXML
+    public void volver() {
+
+        if (sesion.getUsuario() == null) {
+            stageManager.switchScene(FxmlView.LOGIN);
+        } else {
+            switch (sesion.getUsuario().getCredenciales().getPerfil()) {
+                case ADMIN -> stageManager.switchScene(FxmlView.ADMIN);
+                case COORDINACION -> stageManager.switchScene(FxmlView.COORDINADOR);
+                case ARTISTA -> stageManager.switchScene(FxmlView.ARTISTA);
+            }
         }
     }
+}

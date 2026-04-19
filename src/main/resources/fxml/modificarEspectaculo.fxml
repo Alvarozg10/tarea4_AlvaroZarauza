@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <VBox spacing="10" alignment="CENTER"
       xmlns:fx="http://javafx.com/fxml"
@@ -20,6 +21,9 @@
     <Label text="Seleccionar Coordinador"/>
     <ComboBox fx:id="coordinadorCombo" prefWidth="200"/>
 
+    <HBox spacing="10" alignment="CENTER">
     <Button text="Guardar cambios" onAction="#guardarCambios"/>
+    <Button text="Volver" onAction="#volver"/>
+	</HBox>
 
 </VBox>

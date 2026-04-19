@@ -33,5 +33,7 @@
             <TableColumn fx:id="colArtApodo" text="Apodo"/>
         </columns>
     </TableView>
+    
+    <Button text="Volver" onAction="#volver"/>
 
 </VBox>

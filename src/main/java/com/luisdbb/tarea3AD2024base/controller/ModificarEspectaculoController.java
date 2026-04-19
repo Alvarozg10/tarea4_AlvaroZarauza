@@ -7,8 +7,10 @@ import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.modelo.*;
 import com.luisdbb.tarea3AD2024base.services.*;
+import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -41,6 +43,9 @@ public class ModificarEspectaculoController {
     private Sesion sesion;
 
     private Espectaculo espectaculoActual;
+    
+    @Autowired
+    private StageManager stageManager;
 
     @FXML
     public void initialize() {
@@ -164,5 +169,16 @@ public class ModificarEspectaculoController {
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText(msg);
         a.showAndWait();
+    }
+    
+    @FXML
+    public void volver() {
+
+        switch (sesion.getUsuario().getCredenciales().getPerfil()) {
+
+            case ADMIN -> stageManager.switchScene(FxmlView.ADMIN);
+
+            case COORDINACION -> stageManager.switchScene(FxmlView.COORDINADOR);
+        }
     }
 }

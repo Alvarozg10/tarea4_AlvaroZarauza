@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 
 import com.luisdbb.tarea3AD2024base.services.PersonaService;
+import com.luisdbb.tarea3AD2024base.view.FxmlView;
+import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.modelo.Especialidad;
 
 @Component
@@ -50,6 +52,9 @@ public class RegistrarPersonaController {
 
     @Autowired
     private PersonaService personaService;
+    
+    @Autowired
+    private StageManager stageManager;
 
     @FXML
     public void initialize() {
@@ -122,5 +127,10 @@ public class RegistrarPersonaController {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
+    }
+    
+    @FXML
+    public void volver() {
+        stageManager.switchScene(FxmlView.ADMIN);
     }
 }

@@ -45,9 +45,10 @@
 
             <PasswordField fx:id="passwordField" promptText="Password"/>
 
-            <Button text="Registrar"
-                    onAction="#registrarPersona"/>
-
+            <HBox spacing="10" alignment="CENTER">
+    		<Button text="Registrar" onAction="#registrarPersona"/>
+    		<Button text="Volver" onAction="#volver"/>
+			</HBox>
         </VBox>
 
     </content>

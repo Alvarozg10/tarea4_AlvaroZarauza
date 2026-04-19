@@ -132,4 +132,16 @@ public class NumeroService {
 
         return num;
     }
+    
+    @Transactional
+    public Espectaculo obtenerEspectaculoConNumeros(Long id) {
+
+        Espectaculo esp = espectaculoRepository.findById(id).orElse(null);
+
+        if (esp != null) {
+            esp.getNumeros().size(); 
+        }
+
+        return esp;
+    }
 }

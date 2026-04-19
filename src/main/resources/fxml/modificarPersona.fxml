@@ -50,7 +50,10 @@
 
 				<PasswordField fx:id="passwordField" promptText="Nueva contraseña" prefWidth="300"/>
 
-                <Button text="Guardar cambios" onAction="#guardarCambios"/>
+                <HBox spacing="10" alignment="CENTER">
+    			<Button text="Guardar cambios" onAction="#guardarCambios"/>
+    			<Button text="Volver" onAction="#volver"/>
+				</HBox>
 
             </VBox>
 

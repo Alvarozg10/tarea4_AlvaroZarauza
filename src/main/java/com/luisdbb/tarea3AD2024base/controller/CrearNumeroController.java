@@ -6,8 +6,10 @@ import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.modelo.*;
 import com.luisdbb.tarea3AD2024base.services.*;
+import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +37,24 @@ public class CrearNumeroController {
 
     @Autowired
     private Sesion sesion;
+    
+    @Autowired
+    private StageManager stageManager;
 
     private Long espectaculoId;
+    
+    @Autowired
+    private EspectaculoService espectaculoService;
+    
+    private Espectaculo espectaculoActual;
 
     @FXML
     public void initialize() {
 
         espectaculoId = sesion.getEspectaculoId();
+
+        // 🔥 CARGAR ESPECTÁCULO (CLAVE)
+        espectaculoActual = espectaculoService.obtenerEspectaculoCompleto(espectaculoId);
 
         artistasList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -109,5 +122,26 @@ public class CrearNumeroController {
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText(msg);
         a.showAndWait();
+    }
+    
+    @FXML
+    public void volver() {
+
+        espectaculoActual = espectaculoService.obtenerEspectaculoCompleto(espectaculoId);
+
+        int totalNumeros = espectaculoActual.getNumeros().size();
+
+        if (totalNumeros < 3) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Mínimo de números");
+            alert.setHeaderText(null);
+            alert.setContentText("Debes crear al menos 3 números antes de salir");
+
+            alert.showAndWait();
+            return;
+        }
+
+        stageManager.switchScene(FxmlView.ADMIN);
     }
 }

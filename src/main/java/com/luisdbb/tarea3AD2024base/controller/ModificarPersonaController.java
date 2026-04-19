@@ -6,8 +6,10 @@ import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.luisdbb.tarea3AD2024base.config.StageManager;
 import com.luisdbb.tarea3AD2024base.modelo.*;
 import com.luisdbb.tarea3AD2024base.services.PersonaService;
+import com.luisdbb.tarea3AD2024base.view.FxmlView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,8 @@ public class ModificarPersonaController {
     private PersonaService personaService;
 
     private Persona personaActual;
+    
+    @Autowired private StageManager stageManager;
 
     @FXML
     public void cargarPersona() {
@@ -158,5 +162,10 @@ public class ModificarPersonaController {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+    
+    @FXML
+    public void volver() {
+        stageManager.switchScene(FxmlView.ADMIN);
     }
 }
