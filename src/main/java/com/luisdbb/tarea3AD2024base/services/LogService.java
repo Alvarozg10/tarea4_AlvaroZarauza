@@ -12,6 +12,7 @@ import com.luisdbb.tarea3AD2024base.modelo.db4o.TipoOperacion;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class LogService {
@@ -39,7 +40,7 @@ public class LogService {
             );
 
             db.store(log);
-            db.commit(); 
+            db.commit();
 
         } finally {
             db.close();
@@ -55,7 +56,7 @@ public class LogService {
         ObjectContainer db = abrirDB();
 
         try {
-            return db.query(new Predicate<LogOperacion>() {
+            var result = db.query(new Predicate<LogOperacion>() {
 
                 @Override
                 public boolean match(LogOperacion log) {
@@ -70,6 +71,8 @@ public class LogService {
                         (fechaFin == null || !log.getFechaHora().isAfter(fechaFin));
                 }
             });
+
+            return new ArrayList<>(result);
 
         } finally {
             db.close();
