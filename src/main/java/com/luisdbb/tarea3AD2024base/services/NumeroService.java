@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.luisdbb.tarea3AD2024base.modelo.*;
+import com.luisdbb.tarea3AD2024base.modelo.db4o.TipoOperacion;
 import com.luisdbb.tarea3AD2024base.repositorios.*;
 
 import jakarta.transaction.Transactional;
@@ -13,14 +14,20 @@ import java.util.List;
 @Service
 public class NumeroService {
 
-	@Autowired
-	private NumeroRepository numeroRepository;
+    @Autowired
+    private NumeroRepository numeroRepository;
 
     @Autowired
     private EspectaculoRepository espectaculoRepository;
 
     @Autowired
     private PersonaRepository personaRepository;
+
+    @Autowired
+    private LogService logService;
+
+    @Autowired
+    private Sesion sesion;
 
     public void crearNumero(String nombre, double duracion, int orden,
                             Long espectaculoId, List<Long> artistasIds) {
@@ -71,8 +78,16 @@ public class NumeroService {
         numero.setArtistas(artistas);
 
         numeroRepository.save(numero);
+
+        String usuario = sesion.getUsuario().getNombre();
+
+        logService.registrarOperacion(
+                usuario,
+                TipoOperacion.NUEVO,
+                "Se ha insertado un Número con id " + numero.getId()
+        );
     }
-    
+
     public void modificarNumero(Long id, String nombre, double duracion, int orden, List<Long> artistasIds) {
 
         Numero numero = numeroRepository.findById(id).orElse(null);
@@ -120,26 +135,34 @@ public class NumeroService {
         numero.setArtistas(artistas);
 
         numeroRepository.save(numero);
+
+        String usuario = sesion.getUsuario().getNombre();
+
+        logService.registrarOperacion(
+                usuario,
+                TipoOperacion.ACTUALIZACION,
+                "Se ha actualizado Número con id " + numero.getId()
+        );
     }
-    
+
     @Transactional
     public Numero buscarPorId(Long id) {
         Numero num = numeroRepository.findById(id).orElse(null);
 
         if (num != null) {
-            num.getArtistas().size(); 
+            num.getArtistas().size();
         }
 
         return num;
     }
-    
+
     @Transactional
     public Espectaculo obtenerEspectaculoConNumeros(Long id) {
 
         Espectaculo esp = espectaculoRepository.findById(id).orElse(null);
 
         if (esp != null) {
-            esp.getNumeros().size(); 
+            esp.getNumeros().size();
         }
 
         return esp;

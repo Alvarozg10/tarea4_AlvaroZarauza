@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.luisdbb.tarea3AD2024base.modelo.*;
+import com.luisdbb.tarea3AD2024base.modelo.db4o.TipoOperacion;
 import com.luisdbb.tarea3AD2024base.repositorios.*;
 
 import java.time.LocalDate;
@@ -18,7 +19,13 @@ public class PersonaService {
 
     @Autowired
     private CredencialesRepository credencialesRepository;
-    
+
+    @Autowired
+    private LogService logService;
+
+    @Autowired
+    private Sesion sesion;
+
     public Persona buscarPorId(Long id) {
         return personaRepository.findById(id).orElse(null);
     }
@@ -125,6 +132,15 @@ public class PersonaService {
         }
 
         credencialesRepository.save(cred);
+
+        String usuario = sesion.getUsuario().getNombre();
+        String tipoPersona = (persona instanceof Artista) ? "Artista" : "Coordinador";
+
+        logService.registrarOperacion(
+                usuario,
+                TipoOperacion.NUEVO,
+                "Se ha insertado un " + tipoPersona + " con id " + persona.getId()
+        );
     }
 
     @Transactional
@@ -217,5 +233,13 @@ public class PersonaService {
         }
 
         personaRepository.save(persona);
+
+        String usuario = sesion.getUsuario().getNombre();
+
+        logService.registrarOperacion(
+                usuario,
+                TipoOperacion.ACTUALIZACION,
+                "Se ha actualizado Persona con id " + persona.getId()
+        );
     }
 }

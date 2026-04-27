@@ -6,13 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.luisdbb.tarea3AD2024base.modelo.Coordinacion;
-import com.luisdbb.tarea3AD2024base.modelo.Espectaculo;
-import com.luisdbb.tarea3AD2024base.modelo.Numero;
-import com.luisdbb.tarea3AD2024base.modelo.Persona;
-import com.luisdbb.tarea3AD2024base.repositorios.EspectaculoRepository;
-import com.luisdbb.tarea3AD2024base.repositorios.NumeroRepository;
-import com.luisdbb.tarea3AD2024base.repositorios.PersonaRepository;
+import com.luisdbb.tarea3AD2024base.modelo.*;
+import com.luisdbb.tarea3AD2024base.modelo.db4o.TipoOperacion;
+import com.luisdbb.tarea3AD2024base.repositorios.*;
 
 import jakarta.transaction.Transactional;
 
@@ -24,9 +20,15 @@ public class EspectaculoService {
 
     @Autowired
     private PersonaRepository personaRepository;
-    
+
     @Autowired
     private NumeroRepository numeroRepository;
+
+    @Autowired
+    private LogService logService;
+
+    @Autowired
+    private Sesion sesion;
 
     public Espectaculo crearEspectaculo(
             String nombre,
@@ -70,7 +72,17 @@ public class EspectaculoService {
         esp.setFechaFin(fin);
         esp.setCoordinador(coord);
 
-        return espectaculoRepository.save(esp); 
+        esp = espectaculoRepository.save(esp);
+
+        String usuario = sesion.getUsuario().getNombre();
+
+        logService.registrarOperacion(
+                usuario,
+                TipoOperacion.NUEVO,
+                "Se ha insertado un Espectáculo con id " + esp.getId()
+        );
+
+        return esp;
     }
 
     public void modificarEspectaculo(Long id, String nombre,
@@ -125,12 +137,20 @@ public class EspectaculoService {
         esp.setCoordinador(coord);
 
         espectaculoRepository.save(esp);
+
+        String usuario = sesion.getUsuario().getNombre();
+
+        logService.registrarOperacion(
+                usuario,
+                TipoOperacion.ACTUALIZACION,
+                "Se ha actualizado Espectáculo con id " + esp.getId()
+        );
     }
 
     public Espectaculo buscarPorId(Long id) {
         return espectaculoRepository.findById(id).orElse(null);
     }
-    
+
     public void validarMinimoNumeros(Long espectaculoId) {
 
         Espectaculo esp = espectaculoRepository.findById(espectaculoId).orElse(null);
@@ -145,7 +165,7 @@ public class EspectaculoService {
             throw new RuntimeException("El espectáculo debe tener al menos 3 números");
         }
     }
-    
+
     @Transactional
     public Espectaculo obtenerEspectaculoCompleto(Long id) {
 
@@ -158,13 +178,13 @@ public class EspectaculoService {
                 n.getArtistas().size();
             }
 
-            esp.getCoordinador().getNombre(); 
+            esp.getCoordinador().getNombre();
         }
 
         return esp;
     }
-    
+
     public List<Espectaculo> obtenerTodos() {
         return espectaculoRepository.findAll();
     }
-    }
+}

@@ -58,6 +58,13 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
         <artifactId>javafx-fxml</artifactId>
         <version>23</version>
     </dependency>
+    
+    <!-- TAREA4 -->
+    <dependency>
+		<groupId>io.github.nilshoffmann</groupId>
+		<artifactId>db4o-nbm</artifactId>
+		<version>2.0.0</version>
+	</dependency>
 
 </dependencies>
 
