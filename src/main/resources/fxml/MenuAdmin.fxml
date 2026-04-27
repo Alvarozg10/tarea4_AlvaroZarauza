@@ -56,8 +56,8 @@
                     prefWidth="200"
                     GridPane.rowIndex="2" GridPane.columnIndex="1"/>
                     
-            <Button text="Exportar Espectáculos"
-                    onAction="#exportarEspectaculos"
+            <Button text="Ver historial"
+                    onAction="#verLogs"
                     styleClass="button btn-invitado"
                     prefWidth="200"
                     GridPane.rowIndex="2" GridPane.columnIndex="1"/>

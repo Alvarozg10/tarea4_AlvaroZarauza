@@ -48,9 +48,8 @@ public class AdminController {
         stageManager.switchScene(FxmlView.VER_ESPECTACULO);
     }
     
-    @FXML
-    public void exportarEspectaculos() {
-        stageManager.switchScene(FxmlView.EXPORTAR_ESPECTACULOS);
+    public void verLogs() {
+        stageManager.switchScene(FxmlView.VER_LOGS);
     }
     
     @FXML

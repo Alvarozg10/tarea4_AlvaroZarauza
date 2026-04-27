@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.luisdbb.tarea3AD2024base.controller.VerLogsController"
+      stylesheets="@/styles/Styles.css">
+
+    <Label text="Historial de Operaciones" styleClass="title"/>
+
+    <!-- FILTROS -->
+    <HBox spacing="10" alignment="CENTER">
+
+        <TextField fx:id="usuarioField"
+                   promptText="Usuario"/>
+
+        <CheckBox fx:id="nuevoCheck" text="Nuevo"/>
+        <CheckBox fx:id="actCheck" text="Actualización"/>
+        <CheckBox fx:id="borradoCheck" text="Borrado"/>
+
+        <DatePicker fx:id="fechaInicioPicker"/>
+        <DatePicker fx:id="fechaFinPicker"/>
+
+        <Button text="Buscar"
+                onAction="#buscar"
+                styleClass="button btn-admin"/>
+    </HBox>
+
+    <!-- TABLA -->
+    <TableView fx:id="tablaLogs" prefHeight="300" prefWidth="700" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID"/>
+            <TableColumn fx:id="colFecha" text="Fecha"/>
+            <TableColumn fx:id="colUsuario" text="Usuario"/>
+            <TableColumn fx:id="colTipo" text="Tipo"/>
+            <TableColumn fx:id="colResumen" text="Resumen"/>
+        </columns>
+    </TableView>
+
+    <Button text="Volver"
+            onAction="#volver"
+            styleClass="button btn-invitado"
+            prefWidth="200"/>
+
+</VBox>
