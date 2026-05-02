@@ -16,7 +16,10 @@ public enum FxmlView {
     COORDINADOR("/fxml/MenuCoordinador.fxml"),
     ARTISTA("/fxml/MenuArtista.fxml"),
     INVITADO("/fxml/menuInvitado.fxml"),
-    VER_LOGS("/fxml/verLogs.fxml");
+    VER_LOGS("/fxml/verLogs.fxml"),
+    REGISTRAR_INCIDENCIA("/fxml/registrarIncidencia.fxml"),
+    RESOLVER_INCIDENCIA("/fxml/resolverIncidencia.fxml"),
+    COSNULTAR_INCIDENCIAS("/fxml/consultarIncidencias.fxml");
 
     private final String fxml;
 

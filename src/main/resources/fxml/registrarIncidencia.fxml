@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.luisdbb.tarea3AD2024base.controller.RegistrarIncidenciaController">
+
+    <Label text="Registrar Incidencia"/>
+
+    <ComboBox fx:id="tipoCombo" prefWidth="200"/>
+
+    <TextArea fx:id="descripcionField" promptText="Descripción" prefWidth="300"/>
+
+    <TextField fx:id="espectaculoField" promptText="ID Espectáculo (opcional)"/>
+
+    <TextField fx:id="numeroField" promptText="ID Número (opcional)"/>
+
+    <Button text="Registrar" onAction="#registrarIncidencia"/>
+    
+    <Button text="Volver" onAction="#volver"/>
+
+</VBox>

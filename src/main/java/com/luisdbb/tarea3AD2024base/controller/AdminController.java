@@ -52,6 +52,18 @@ public class AdminController {
         stageManager.switchScene(FxmlView.VER_LOGS);
     }
     
+    public void registrarIncidencia() {
+        stageManager.switchScene(FxmlView.REGISTRAR_INCIDENCIA);
+    }
+    
+    public void resolverIncidencia() {
+        stageManager.switchScene(FxmlView.RESOLVER_INCIDENCIA);
+    }
+    
+    public void consultarIncidencias() {
+        stageManager.switchScene(FxmlView.COSNULTAR_INCIDENCIAS);
+    }
+    
     @FXML
     public void cerrarSesion() {
 

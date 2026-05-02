@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.luisdbb.tarea3AD2024base.controller.ConsultarIncidenciasController"
+      stylesheets="@/styles/Styles.css">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <VBox spacing="15" alignment="CENTER"
+          styleClass="card"
+          maxWidth="500">
+
+        <Label text="Consultar Incidencias"
+               styleClass="title"/>
+
+        <!-- FILTROS -->
+        <GridPane hgap="10" vgap="10" alignment="CENTER">
+
+            <Label text="Tipo:"
+                   GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+
+            <ComboBox fx:id="tipoCombo"
+                      prefWidth="180"
+                      GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Estado:"
+                   GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
+            <ComboBox fx:id="estadoCombo"
+                      prefWidth="180"
+                      GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="ID Espectáculo:"
+                   GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+
+            <TextField fx:id="espectaculoField"
+                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="ID Número:"
+                   GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+
+            <TextField fx:id="numeroField"
+                       GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Desde:"
+                   GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+
+            <DatePicker fx:id="desdePicker"
+                        GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Hasta:"
+                   GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+
+            <DatePicker fx:id="hastaPicker"
+                        GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        </GridPane>
+
+        <HBox spacing="10" alignment="CENTER">
+
+            <Button text="Buscar"
+                    onAction="#buscar"
+                    styleClass="button btn-admin"
+                    prefWidth="120"/>
+
+            <Button text="Volver"
+                    onAction="#volver"
+                    styleClass="button btn-invitado"
+                    prefWidth="120"/>
+
+        </HBox>
+
+        <TableView fx:id="tabla" prefWidth="450" prefHeight="250">
+
+    <columns>
+
+        <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+
+        <TableColumn fx:id="colTipo" text="Tipo" prefWidth="120"/>
+
+        <TableColumn fx:id="colResuelta" text="Resuelta" prefWidth="50"/>
+
+        <TableColumn fx:id="colFecha" text="Fecha" prefWidth="200"/>
+
+    </columns>
+
+</TableView>
+
+    </VBox>
+
+</VBox>

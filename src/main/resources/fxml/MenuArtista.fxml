@@ -29,6 +29,16 @@
                     onAction="#verEspectaculos"
                     styleClass="button btn-invitado"
                     prefWidth="220"/>
+                    
+            <Button text="Registrar Incidencia"
+                    onAction="#registrarIncidencia"
+                    styleClass="button btn-invitado"
+                    prefWidth="220"/> 
+                    
+            <Button text="Consultar Incidencias"
+            		onAction="#consultarIncidencias"
+            		styleClass="button btn-invitado"
+		            prefWidth="220"/>   
 
         </VBox>
 

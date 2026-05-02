@@ -1,115 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-<parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.4.0</version>
-</parent>
-
-<groupId>com.luisdbb</groupId>
-<artifactId>tarea3AD2024base</artifactId>
-<version>0.0.1-SNAPSHOT</version>
-<packaging>jar</packaging>
-
-<name>tarea3AD2024base</name>
-<description>Proyecto base para TAREA3 AD</description>
-
-<properties>
-    <java.version>23</java.version>
-</properties>
-
-<dependencies>
-
-    <!-- JPA -->
-    <dependency>
+    <parent>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.0</version>
+    </parent>
 
-    <!-- MySQL -->
-    <dependency>
-        <groupId>com.mysql</groupId>
-        <artifactId>mysql-connector-j</artifactId>
-        <scope>runtime</scope>
-    </dependency>
+    <groupId>com.luisdbb</groupId>
+    <artifactId>tarea3AD2024base</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-    <!-- Testing -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-test</artifactId>
-        <scope>test</scope>
-    </dependency>
+    <name>tarea3AD2024base</name>
 
-    <!-- JavaFX -->
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-controls</artifactId>
-        <version>23</version>
-    </dependency>
+    <properties>
+        <java.version>23</java.version>
+    </properties>
 
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-fxml</artifactId>
-        <version>23</version>
-    </dependency>
-    
-    <!-- TAREA4 -->
-    <dependency>
-		<groupId>io.github.nilshoffmann</groupId>
-		<artifactId>db4o-nbm</artifactId>
-		<version>2.0.0</version>
-	</dependency>
+    <!-- REPOSITORIO OBJECTDB -->
+    <repositories>
+        <repository>
+            <id>objectdb</id>
+            <url>https://m2.objectdb.com</url>
+        </repository>
+    </repositories>
 
-</dependencies>
+    <dependencies>
 
-<build>
-    <plugins>
-
-        <plugin>
+        <!-- SPRING + JPA -->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-        </plugin>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
 
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.11.0</version>
-            <configuration>
-                <release>23</release>
-            </configuration>
-        </plugin>
+        <!-- MYSQL -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
-        <plugin>
+        <!-- TEST -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JAVAFX -->
+        <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-maven-plugin</artifactId>
-            <version>0.0.8</version>
-            <configuration>
-                <mainClass>com.luisdbb.tarea3AD2024base.Tarea3Ad2024baseApplication</mainClass>
-            </configuration>
-        </plugin>
-        
-        <plugin>
-    		<groupId>org.openjfx</groupId>
-    		<artifactId>javafx-maven-plugin</artifactId>
-    		<version>0.0.8</version>
-    		<configuration>
-        		<mainClass>com.luisdbb.tarea3AD2024base.Tarea3Ad2024baseApplication</mainClass>
-        	<options>
-            <option>--add-opens</option>
-            <option>java.base/java.time=ALL-UNNAMED</option>
-            <option>--add-opens</option>
-            <option>java.base/java.lang=ALL-UNNAMED</option>
-        </options>
-    </configuration>
-</plugin>
+            <artifactId>javafx-controls</artifactId>
+            <version>23</version>
+        </dependency>
 
-    </plugins>
-</build>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>23</version>
+        </dependency>
+
+        <!-- DB4O -->
+        <dependency>
+            <groupId>io.github.nilshoffmann</groupId>
+            <artifactId>db4o-nbm</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <!-- OBJECTDB -->
+        <dependency>
+            <groupId>com.objectdb</groupId>
+            <artifactId>objectdb</artifactId>
+            <version>2.9.5</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- SPRING BOOT -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- COMPILADOR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>23</release>
+                </configuration>
+            </plugin>
+
+            <!-- JAVAFX -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.luisdbb.tarea3AD2024base.Tarea3Ad2024baseApplication</mainClass>
+                    <options>
+                        <option>--add-opens</option>
+                        <option>java.base/java.time=ALL-UNNAMED</option>
+                        <option>--add-opens</option>
+                        <option>java.base/java.lang=ALL-UNNAMED</option>
+                    </options>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>

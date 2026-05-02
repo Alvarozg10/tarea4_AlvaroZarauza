@@ -13,61 +13,72 @@
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
-    <VBox styleClass="card" spacing="20" alignment="CENTER" maxWidth="500">
+    <VBox spacing="20" alignment="CENTER">
 
-        <Label text="Panel de Administración"
-               styleClass="title"/>
+        <VBox styleClass="card" spacing="20" alignment="CENTER" maxWidth="500">
 
-        <GridPane hgap="15" vgap="15" alignment="CENTER">
+            <Label text="Panel de Administración"
+                   styleClass="title"/>
 
-            <Button text="Registrar Persona"
-                    onAction="#registrarPersona"
-                    styleClass="button btn-admin"
-                    prefWidth="200"
-                    GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <GridPane hgap="15" vgap="15" alignment="CENTER">
 
-            <Button text="Modificar Personas"
-                    onAction="#modificarPersona"
-                    styleClass="button btn-admin"
-                    prefWidth="200"
-                    GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Button text="Registrar Persona"
+                        onAction="#registrarPersona"
+                        prefWidth="200"
+                        GridPane.rowIndex="0" GridPane.columnIndex="0"/>
 
-            <Button text="Crear Espectáculo"
-                    onAction="#crearEspectaculo"
-                    styleClass="button btn-admin"
-                    prefWidth="200"
-                    GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <Button text="Modificar Personas"
+                        onAction="#modificarPersona"
+                        prefWidth="200"
+                        GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-            <Button text="Modificar Espectáculo"
-                    onAction="#modificarEspectaculo"
-                    styleClass="button btn-admin"
-                    prefWidth="200"
-                    GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Button text="Crear Espectáculo"
+                        onAction="#crearEspectaculo"
+                        prefWidth="200"
+                        GridPane.rowIndex="1" GridPane.columnIndex="0"/>
 
-            <Button text="Modificar Número"
-                    onAction="#modificarNumero"
-                    styleClass="button btn-admin"
-                    prefWidth="200"
-                    GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Button text="Modificar Espectáculo"
+                        onAction="#modificarEspectaculo"
+                        prefWidth="200"
+                        GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-            <Button text="Ver Espectáculos"
-                    onAction="#verEspectaculos"
-                    styleClass="button btn-invitado"
-                    prefWidth="200"
-                    GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                    
-            <Button text="Ver historial"
-                    onAction="#verLogs"
-                    styleClass="button btn-invitado"
-                    prefWidth="200"
-                    GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Button text="Modificar Número"
+                        onAction="#modificarNumero"
+                        prefWidth="200"
+                        GridPane.rowIndex="2" GridPane.columnIndex="0"/>
 
-        </GridPane>
+                <Button text="Ver Espectáculos"
+                        onAction="#verEspectaculos"
+                        prefWidth="200"
+                        GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-        <Button text="Cerrar sesión"
-                onAction="#cerrarSesion"
-                styleClass="button btn-invitado"
-                prefWidth="200"/>
+                <Button text="Ver historial"
+                        onAction="#verLogs"
+                        prefWidth="200"
+                        GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+
+                <Button text="Registrar Incidencia"
+                        onAction="#registrarIncidencia"
+                        prefWidth="200"
+                        GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Button text="Resolver Incidencia"
+                        onAction="#resolverIncidencia"
+                        prefWidth="200"
+                        GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+
+                <Button text="Consultar Incidencias"
+                        onAction="#consultarIncidencias"
+                        prefWidth="200"
+                        GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            </GridPane>
+
+            <Button text="Cerrar sesión"
+                    onAction="#cerrarSesion"
+                    prefWidth="200"/>
+
+        </VBox>
 
     </VBox>
 

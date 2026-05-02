@@ -29,6 +29,15 @@ public class ArtistaController {
     }
     
     @FXML
+    public void registrarIncidencia() {
+        stageManager.switchScene(FxmlView.REGISTRAR_INCIDENCIA);
+    }
+    
+    public void consultarIncidencias() {
+        stageManager.switchScene(FxmlView.COSNULTAR_INCIDENCIAS);
+    }
+    
+    @FXML
     public void cerrarSesion() {
 
         sesion.setUsuario(null); 
